@@ -24,7 +24,7 @@ public class MenuController {
     }
 
     private Coaches createCoachesFromUserInput() {
-        return getValidInput(() -> new Coaches(view.inputCoaches()));
+        return getValidInput(() -> Coaches.from(view.inputCoaches()));
     }
 
     private void createCantEatMenusByCoachFromUserInput(Coaches coaches) {
@@ -37,7 +37,7 @@ public class MenuController {
     }
 
     private Recommend applyMenuCategorys() {
-        Recommend recommend = new Recommend();
+        Recommend recommend = Recommend.create();
         recommend.addCategorys();
         return recommend;
     }

@@ -11,9 +11,13 @@ public class Recommend {
     RecommendNumberGenerator recommendNumberGenerator;
     List<Category> recommendCategory;
 
-    public Recommend() {
+    private Recommend() {
         this.recommendNumberGenerator = RecommendNumberGenerator.create();
         this.recommendCategory = new ArrayList<>();
+    }
+
+    public static Recommend create(){
+        return new Recommend();
     }
 
     public void addCategorys(){

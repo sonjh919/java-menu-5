@@ -13,10 +13,14 @@ public class Coach {
     private List<String> cantEatMenus;
     private List<String> recommendMenus;
 
-    public Coach(String name) {
+    private Coach(String name) {
         this.name = name;
         this.cantEatMenus = new ArrayList<>();
         this.recommendMenus = new ArrayList<>();
+    }
+
+    public static Coach from(String name){
+        return new Coach(name);
     }
 
     public void setCantEatMenus(List<String> cantEatMenus) {
@@ -34,6 +38,10 @@ public class Coach {
         }
     }
 
+    public GetMenusByCoach getMenusByCoach() {
+        return new GetMenusByCoach(name, recommendMenus);
+    }
+
     private boolean validateNotContainsMenu(String menu) {
         return !recommendMenus.contains(menu);
     }
@@ -42,7 +50,4 @@ public class Coach {
         return !cantEatMenus.contains(menu);
     }
 
-    public GetMenusByCoach getMenusByCoach() {
-        return new GetMenusByCoach(name, recommendMenus);
-    }
 }

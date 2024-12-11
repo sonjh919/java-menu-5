@@ -26,12 +26,16 @@ public class Coaches {
     private List<Coach> coaches = new ArrayList<>();
     private List<String> coachesName;
 
-    public Coaches(String input) {
+    private Coaches(String input) {
         coachesName = List.of(input.split(DELIMITER));
         validateCoaches(coachesName);
         for (String coach : coachesName) {
-            this.coaches.add(new Coach(coach));
+            this.coaches.add(Coach.from(coach));
         }
+    }
+
+    public static Coaches from(String input){
+        return new Coaches(input);
     }
 
     public List<String> getCoachesName(){
