@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.domain.constant.Category;
 import menu.domain.constant.Menus;
 import menu.global.exception.ExceptionMessage;
 import menu.global.exception.ValidatorBuilder;
@@ -12,6 +13,7 @@ import static menu.global.exception.ExceptionMessage.MENU_NOT_FOUND;
 
 public class Coaches {
     private static final String DELIMITER = ",";
+    private static final String MENU_DELIMITER = ", ";
     private static final int MIN_COACH_SIZE = 2;
     private static final int MAX_COACH_SIZE = 5;
     private static final int MIN_COACH_NAME_SIZE = 2;
@@ -34,12 +36,18 @@ public class Coaches {
     }
 
     public int setCantEatMenus(String input, int count) {
-        List<String> cantEatMenus = List.of(input.split(DELIMITER));
+        List<String> cantEatMenus = List.of(input.split(MENU_DELIMITER));
         if(!validateIsEmpty(input)){
             validateCantEatMenus(cantEatMenus);
             coaches.get(count).setCantEatMenus(cantEatMenus);
         };
         return count;
+    }
+
+    public void addMenus(Category category, RecommendNumberGenerator recommendNumberGenerator) {
+        for (Coach coach : coaches) {
+            coach.addMenus(category, recommendNumberGenerator);
+        }
     }
 
     private boolean validateIsEmpty(String input) {
@@ -66,8 +74,6 @@ public class Coaches {
                 .validate(coaches -> coaches.size() != coaches.stream().distinct().count(), ExceptionMessage.COACH_DUPLICATE)
                 .get();
     }
-
-
 
 
 }

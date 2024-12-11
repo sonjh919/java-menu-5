@@ -2,25 +2,34 @@ package menu.domain;
 
 import menu.domain.constant.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recommend {
-    CategoryNumberGenerator categoryNumberGenerator;
+    RecommendNumberGenerator recommendNumberGenerator;
     List<Category> recommendCategory;
 
     public Recommend() {
-        this.categoryNumberGenerator = CategoryNumberGenerator.create();
+        this.recommendNumberGenerator = RecommendNumberGenerator.create();
+        this.recommendCategory = new ArrayList<>();
     }
 
     public void addCategorys(){
-        for (int i = 0; i < 5; i++) {
+        for (int day = 0; day < 5; day++) {
             addCategory();
         }
     }
 
+    public void addMenus(Coaches coaches) {
+        for (int day = 0; day <5 ; day++) {
+            coaches.addMenus(recommendCategory.get(day), recommendNumberGenerator);
+        }
+
+    }
+
     private void addCategory() {
         while(true) {
-            int categoryNumber = categoryNumberGenerator.generate();
+            int categoryNumber = recommendNumberGenerator.generate();
             Category category = Category.getCategoryByNumber(categoryNumber);
             if(validateIsNotDuplicateCategory(category)){
                 recommendCategory.add(category);
@@ -36,4 +45,6 @@ public class Recommend {
         }
         return count <= 1;
     }
+
+
 }

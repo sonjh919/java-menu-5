@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static menu.global.exception.ExceptionMessage.MENU_NOT_FOUND;
+
 public enum Menus {
     INSTANCE;
 
@@ -36,5 +38,12 @@ public enum Menus {
             }
         }
         return true;
+    }
+
+    public List<String> getMenusByCategory(Category input) {
+        for (Category category : menus.keySet()) {
+            return menus.get(input);
+        }
+        throw new IllegalArgumentException(MENU_NOT_FOUND.message);
     }
 }

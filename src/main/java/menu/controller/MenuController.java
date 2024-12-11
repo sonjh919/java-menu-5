@@ -2,7 +2,6 @@ package menu.controller;
 
 import menu.domain.Coaches;
 import menu.domain.Recommend;
-import menu.domain.constant.Menus;
 import menu.view.View;
 
 import java.util.List;
@@ -19,8 +18,8 @@ public class MenuController {
     public void start() {
         Coaches coaches = createCoachesFromUserInput();
         createCantEatMenusByCoachFromUserInput(coaches);
-        applyMenuCategorys();
-//        applyMenus();
+        Recommend recommend = applyMenuCategorys();
+        applyMenus(recommend, coaches);
 //        outputMenus();
     }
 
@@ -33,15 +32,19 @@ public class MenuController {
         for (int i = 0; i < coachesName.size(); i++) {
             String name = coachesName.get(i);
             int count = i;
-            getValidInput(() -> coaches.setCantEatMenus(view.inputCantEatMenus(name),count));
+            getValidInput(() -> coaches.setCantEatMenus(view.inputCantEatMenus(name), count));
         }
     }
 
-    private void applyMenuCategorys() {
+    private Recommend applyMenuCategorys() {
         Recommend recommend = new Recommend();
         recommend.addCategorys();
+        return recommend;
     }
 
+    private void applyMenus(Recommend recommend, Coaches coaches) {
+        recommend.addMenus(coaches);
+    }
 
 
 }
