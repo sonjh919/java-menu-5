@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coaches;
+import menu.domain.Recommend;
 import menu.domain.constant.Menus;
 import menu.view.View;
 
@@ -18,7 +19,7 @@ public class MenuController {
     public void start() {
         Coaches coaches = createCoachesFromUserInput();
         createCantEatMenusByCoachFromUserInput(coaches);
-//        applyMenuCategorys();
+        applyMenuCategorys();
 //        applyMenus();
 //        outputMenus();
     }
@@ -35,5 +36,12 @@ public class MenuController {
             getValidInput(() -> coaches.setCantEatMenus(view.inputCantEatMenus(name),count));
         }
     }
+
+    private void applyMenuCategorys() {
+        Recommend recommend = new Recommend();
+        recommend.addCategorys();
+    }
+
+
 
 }
