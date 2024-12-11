@@ -26,4 +26,9 @@ public class View {
         outputView.printMessage(Output.INPUT_COACHS);
         return inputView.userInput();
     }
+
+    public String inputCantEatMenus(String name) {
+        outputView.printCantEatMenu(name);
+        return inputView.userInput();
+    }
 }
