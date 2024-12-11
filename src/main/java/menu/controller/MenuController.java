@@ -1,7 +1,7 @@
 package menu.controller;
 
-import menu.domain.Coaches;
-import menu.domain.Recommend;
+import menu.domain.coach.Coaches;
+import menu.domain.recommend.Recommend;
 import menu.view.View;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class MenuController {
         createCantEatMenusByCoachFromUserInput(coaches);
         Recommend recommend = applyMenuCategorys();
         applyMenus(recommend, coaches);
-//        outputMenus();
+        outputMenus(recommend, coaches);
     }
 
     private Coaches createCoachesFromUserInput() {
@@ -46,5 +46,8 @@ public class MenuController {
         recommend.addMenus(coaches);
     }
 
+    private void outputMenus(Recommend recommend, Coaches coaches) {
+        view.outputRecommendResult(recommend.getCategorys(), coaches.getMenusByCoaches());
+    }
 
 }

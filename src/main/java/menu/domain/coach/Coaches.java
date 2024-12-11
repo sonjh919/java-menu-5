@@ -1,5 +1,7 @@
-package menu.domain;
+package menu.domain.coach;
 
+import menu.domain.coach.dto.GetMenusByCoaches;
+import menu.domain.recommend.RecommendNumberGenerator;
 import menu.domain.constant.Category;
 import menu.domain.constant.Menus;
 import menu.global.exception.ExceptionMessage;
@@ -7,6 +9,7 @@ import menu.global.exception.ValidatorBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static menu.global.exception.ExceptionMessage.MAX_MENU;
 import static menu.global.exception.ExceptionMessage.MENU_NOT_FOUND;
@@ -75,5 +78,9 @@ public class Coaches {
                 .get();
     }
 
-
+    public GetMenusByCoaches getMenusByCoaches() {
+        return new GetMenusByCoaches(coaches.stream()
+                .map(Coach::getMenusByCoach)
+                .collect(Collectors.toList()));
+    }
 }

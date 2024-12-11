@@ -1,5 +1,7 @@
-package menu.domain;
+package menu.domain.coach;
 
+import menu.domain.coach.dto.GetMenusByCoach;
+import menu.domain.recommend.RecommendNumberGenerator;
 import menu.domain.constant.Category;
 import menu.domain.constant.Menus;
 
@@ -25,7 +27,7 @@ public class Coach {
         while(true) {
             List<String> menus = Menus.INSTANCE.getMenusByCategory(category);
             String menu = recommendNumberGenerator.shuffile(menus).get(0);
-            if(validateNotContainsMenu(menu)){
+            if(validateNotContainsMenu(menu) && validateCanEatMenu(menu)){
                 recommendMenus.add(menu);
                 return;
             };
@@ -34,5 +36,13 @@ public class Coach {
 
     private boolean validateNotContainsMenu(String menu) {
         return !recommendMenus.contains(menu);
+    }
+
+    private boolean validateCanEatMenu(String menu) {
+        return !cantEatMenus.contains(menu);
+    }
+
+    public GetMenusByCoach getMenusByCoach() {
+        return new GetMenusByCoach(name, recommendMenus);
     }
 }

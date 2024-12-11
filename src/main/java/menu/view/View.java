@@ -1,5 +1,8 @@
 package menu.view;
 
+import menu.domain.coach.dto.GetMenusByCoaches;
+import menu.domain.recommend.dto.GetCategorysDto;
+
 public class View {
     private final InputView inputView;
     private final OutputView outputView;
@@ -7,18 +10,6 @@ public class View {
     public View(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-    }
-
-    //test
-    public String inputText() {
-        outputView.printMessage(Output.NEW_LINE);
-        return inputView.userInput();
-    }
-
-    //test, 매개변수 dto
-    public void outputText() {
-        outputView.printNewLine();
-        outputView.printMessage(Output.NEW_LINE);
     }
 
     public String inputCoaches() {
@@ -30,5 +21,9 @@ public class View {
     public String inputCantEatMenus(String name) {
         outputView.printCantEatMenu(name);
         return inputView.userInput();
+    }
+
+    public void outputRecommendResult(GetCategorysDto categorys, GetMenusByCoaches menusByCoaches) {
+        outputView.printRecommendResult(categorys,menusByCoaches);
     }
 }

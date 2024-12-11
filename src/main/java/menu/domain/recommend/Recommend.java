@@ -1,6 +1,8 @@
-package menu.domain;
+package menu.domain.recommend;
 
+import menu.domain.coach.Coaches;
 import menu.domain.constant.Category;
+import menu.domain.recommend.dto.GetCategorysDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,4 +49,7 @@ public class Recommend {
     }
 
 
+    public GetCategorysDto getCategorys() {
+        return new GetCategorysDto(recommendCategory);
+    }
 }
