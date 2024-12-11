@@ -20,4 +20,10 @@ public class View {
         outputView.printNewLine();
         outputView.printMessage(Output.NEW_LINE);
     }
+
+    public String inputCoaches() {
+        outputView.printMessage(Output.START_MESSAGE);
+        outputView.printMessage(Output.INPUT_COACHS);
+        return inputView.userInput();
+    }
 }
