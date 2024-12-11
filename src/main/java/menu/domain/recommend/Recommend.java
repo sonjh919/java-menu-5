@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recommend {
+    private static final int MAX_DAY = 5;
+
     RecommendNumberGenerator recommendNumberGenerator;
     List<Category> recommendCategory;
 
@@ -21,13 +23,13 @@ public class Recommend {
     }
 
     public void addCategorys(){
-        for (int day = 0; day < 5; day++) {
+        for (int day = 0; day < MAX_DAY; day++) {
             addCategory();
         }
     }
 
     public void addMenus(Coaches coaches) {
-        for (int day = 0; day <5 ; day++) {
+        for (int day = 0; day <MAX_DAY ; day++) {
             coaches.addMenus(recommendCategory.get(day), recommendNumberGenerator);
         }
 
