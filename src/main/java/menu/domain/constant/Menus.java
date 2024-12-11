@@ -1,7 +1,5 @@
 package menu.domain.constant;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

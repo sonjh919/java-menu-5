@@ -4,7 +4,6 @@ import java.util.function.Predicate;
 
 public class ValidatorBuilder<T> {
     private final T value;
-    private int numericValue;
 
     private ValidatorBuilder(final T value) {
         this.value = value;
@@ -21,28 +20,7 @@ public class ValidatorBuilder<T> {
         return this;
     }
 
-    public ValidatorBuilder<T> validateInteger(final Predicate<Integer> condition, final ExceptionMessage exception) {
-        if (condition.test(numericValue)) {
-            throw new IllegalArgumentException(exception.message);
-        }
-        return this;
-    }
-
-    public ValidatorBuilder<T> validateIsInteger() {
-        try {
-            numericValue = Integer.parseInt((String) value);
-            return this;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_INTEGER.message);
-        }
-    }
-
     public T get() {
         return value;
     }
-
-    public int getNumericValue() {
-        return numericValue;
-    }
-
 }
