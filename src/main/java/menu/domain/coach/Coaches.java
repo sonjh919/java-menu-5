@@ -57,6 +57,12 @@ public class Coaches {
         }
     }
 
+    public GetMenusByCoaches getMenusByCoaches() {
+        return new GetMenusByCoaches(coaches.stream()
+                .map(Coach::getMenusByCoach)
+                .collect(Collectors.toList()));
+    }
+
     private boolean validateIsEmpty(String input) {
         return !input.isEmpty() && input.trim().isEmpty();
     }
@@ -82,9 +88,4 @@ public class Coaches {
                 .get();
     }
 
-    public GetMenusByCoaches getMenusByCoaches() {
-        return new GetMenusByCoaches(coaches.stream()
-                .map(Coach::getMenusByCoach)
-                .collect(Collectors.toList()));
-    }
 }

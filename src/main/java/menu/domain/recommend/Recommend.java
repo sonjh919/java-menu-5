@@ -35,6 +35,10 @@ public class Recommend {
 
     }
 
+    public GetCategorysDto getCategorys() {
+        return new GetCategorysDto(recommendCategory);
+    }
+
     private void addCategory() {
         while(true) {
             int categoryNumber = recommendNumberGenerator.generate();
@@ -54,8 +58,4 @@ public class Recommend {
         return count <= 1;
     }
 
-
-    public GetCategorysDto getCategorys() {
-        return new GetCategorysDto(recommendCategory);
-    }
 }
